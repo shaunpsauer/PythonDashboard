@@ -12,18 +12,18 @@ class Config:
 
     #Key report files
     REPORT_FILES = {
-        'Cost Estimating': 'sd-09 Cost Estimating Schedule.xlsx',
-        'Milestone Schedule': 'sd-01 Milestone Schedule.xlsx',
-        'Contract Schedule': "sd-01 Contract Schedule.xlsx",
-        'Order Data': 'sd-17 PGE Gas Ops Order Data.xlsx',
+        'cost_estimating': 'sd-09 Cost Estimating Schedule.xlsx',
+        'milestone': 'sd-01 Milestone Schedule.xlsx',
+        'contract': 'sd-02 Contract Schedule.xlsx',
+        'order_data': 'sd-17 PGE Gas Ops Order Data.xlsx',
     }
 
     #Excel read settings
     EXCEL_ENGINE = 'openpyxl' #for xlsx files
 
     #Data storage
-    DATABASE_PATH = Path(BASE_FOLDER) / 'Data' / 'project_tracker.db'
-    ARCHIVE_FOLDER = Path(BASE_FOLDER) / 'Data' / 'Archive'
+    DATABASE_PATH = Path(__file__).parent / 'data' / 'project_tracker.db'
+    ARCHIVE_FOLDER = Path(__file__).parent / 'data' / 'archive'
 
     #User Name
     USER_NAME = 'Shaun Sauer'

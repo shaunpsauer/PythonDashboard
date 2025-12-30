@@ -1,9 +1,10 @@
 """
 Quick Start Script - Test Your Data Loading
-Run this after updating the file path in config.py
+Run this after updating the file path in Config.py
 """
 from Data_Loader import SAPDataLoader
 from Config import Config
+
 
 def quick_test():
     """Quick test to verify everything works"""
@@ -16,7 +17,7 @@ def quick_test():
     print(f"   Your name: {Config.USER_NAME}")
     print(f"\n   Files to load:")
     for key, filename in Config.REPORT_FILES.items():
-        print(f"      • {key}: {filename}")
+        print(f"      - {key}: {filename}")
     
     input("\n   Press ENTER to continue with data loading...")
     
@@ -27,7 +28,7 @@ def quick_test():
     
     if len(reports) == 0:
         print("\nERROR: No files loaded successfully!")
-        print("   Check that your file paths in config.py are correct")
+        print("   Check that your file paths in Config.py are correct")
         return
     
     # Show what we got
