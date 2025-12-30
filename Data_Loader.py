@@ -232,8 +232,23 @@ class SAPDataLoader:
                 print(f"   Available columns: {', '.join(df.columns)}")
                 return None
         
-        # Filter for your assignments
-        mask = df[name_column].astype(str).str.contains(user_name, case=False, na=False)
+        # Normalize names for flexible matching (handles order, case, punctuation)
+        def normalize_name(name):
+            """Normalize a name by lowercasing, splitting on delimiters, and sorting words"""
+            import re
+            # Convert to lowercase and split on common delimiters (comma, space, etc.)
+            words = re.split(r'[,;\s]+', str(name).lower())
+            # Remove empty strings and sort for consistent comparison
+            words = sorted([w.strip() for w in words if w.strip()])
+            return ' '.join(words)
+        
+        # Normalize the user name
+        normalized_user_name = normalize_name(user_name)
+        
+        # Apply normalization to each value in the column and check for match
+        mask = df[name_column].astype(str).apply(
+            lambda x: normalize_name(x) == normalized_user_name
+        )
         your_projects = df[mask]
         
         print(f"\nFound {len(your_projects)} projects assigned to {user_name}")
